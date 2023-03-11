@@ -9,7 +9,7 @@ public class HibernateUtil {
 
     private static SessionFactory sessionFactory;
 
-    public static Session getSession(String concreteDatabase, Class<?> annotatedClass) {
+    public static Session getSession(String concreteDatabase, Class<?>... annotatedClass) {
         if (sessionFactory == null) {
             Configuration configuration = new Configuration()
                     .setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3307/" + concreteDatabase)
@@ -17,8 +17,10 @@ public class HibernateUtil {
                     .setProperty("hibernate.connection.password", "hbstudent")
                     .setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect")
                     .setProperty("hibernate.show_sql", "true")
-                    .addAnnotatedClass(annotatedClass); // add your entity classes here
-
+                    ; // add your entity classes here
+            for (int i = 0; i < annotatedClass.length; i++) {
+                configuration.addAnnotatedClass(annotatedClass[i]);
+            }
             sessionFactory = configuration.buildSessionFactory();
         }
         return sessionFactory.openSession();

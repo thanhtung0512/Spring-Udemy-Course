@@ -17,7 +17,11 @@ public class InstructorDetail {
     @Column(name = "hobby")
     private String hobby;
 
-
+    @OneToOne(mappedBy = "instructorDetail")
+    // In a JPA entity mapping, the @JoinColumn annotation is used to specify the foreign key column
+    // for a many-to-one or one-to-one relationship. It is used on the side of the relationship
+    // that "owns" the foreign key.
+    private Instructor instructor;
 
     public InstructorDetail() {}
 
@@ -48,5 +52,14 @@ public class InstructorDetail {
 
     public void setHobby(String hobby) {
         this.hobby = hobby;
+    }
+
+    @Override
+    public String toString() {
+        return "InstructorDetail{" +
+                "id=" + id +
+                ", youtubeChannel='" + youtubeChannel + '\'' +
+                ", hobby='" + hobby + '\'' +
+                '}';
     }
 }
