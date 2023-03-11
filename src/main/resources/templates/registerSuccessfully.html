@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register successfully</title>
+</head>
+<body>
+<p th:utext="| 'Username: '  ${user.getUsername()}  <br/>
+    'Email:'  ${user.getEmail()} <br/>
+     'Country' ${user.getCountry()} |"> </p>
+
+
+</body>
+</html>
