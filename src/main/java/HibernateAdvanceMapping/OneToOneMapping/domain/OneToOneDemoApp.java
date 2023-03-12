@@ -12,8 +12,16 @@ public class OneToOneDemoApp {
         session.beginTransaction();
 
         // doing stuff while transaction
-        InstructorDetail instructorDetail = session.get(instructorDetailClass,2);
+
+/*
+        delete from instructor detail without delete instructor
+        we need to unlink from the instructor to current instructor_details
+        and set cascade on all operation except the CascadeType.ALL
+
+        InstructorDetail instructorDetail = session.get(InstructorDetail.class,5);
+        instructorDetail.getInstructor().setInstructorDetail(null);
         session.delete(instructorDetail);
+*/
 
         session.getTransaction().commit();
     }

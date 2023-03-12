@@ -17,13 +17,23 @@ public class InstructorDetail {
     @Column(name = "hobby")
     private String hobby;
 
-    @OneToOne(mappedBy = "instructorDetail")
+
+    @OneToOne(mappedBy = "instructorDetail", cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH})
     // In a JPA entity mapping, the @JoinColumn annotation is used to specify the foreign key column
     // for a many-to-one or one-to-one relationship. It is used on the side of the relationship
     // that "owns" the foreign key.
     private Instructor instructor;
 
-    public InstructorDetail() {}
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
+
+    public InstructorDetail() {
+    }
 
     public InstructorDetail(String youtubeChannel, String hobby) {
         this.youtubeChannel = youtubeChannel;
