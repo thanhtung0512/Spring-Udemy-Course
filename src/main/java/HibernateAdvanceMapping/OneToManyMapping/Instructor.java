@@ -28,13 +28,13 @@ public class Instructor {
     private InstructorDetail instructorDetail;
 
 
-    @OneToMany(mappedBy = "instructor"
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor"
             , cascade = {CascadeType.MERGE, CascadeType.DETACH
             , CascadeType.REFRESH, CascadeType.PERSIST})
     private List<Course> courseList = new ArrayList<>();
 
     public void addCourse(Course course) {
-        // if exist, don't add
+        // if existed, don't add
         for (Course course1 : courseList) {
             if (course1.getId() == course.getId()) return;
         }

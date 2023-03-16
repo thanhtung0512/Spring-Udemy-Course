@@ -31,6 +31,11 @@ public class SpringMvcDemoApplication {
 
     }
 
+    @GetMapping("/")
+    public String homepage() {
+        return "index1";
+    }
+
     @GetMapping("/index")
     public String index() {
         return "index";

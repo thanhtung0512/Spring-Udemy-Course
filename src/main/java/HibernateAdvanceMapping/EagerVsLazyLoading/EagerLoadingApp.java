@@ -1,15 +1,16 @@
-package HibernateAdvanceMapping.OneToManyMapping;
+package HibernateAdvanceMapping.EagerVsLazyLoading;
 
+import HibernateAdvanceMapping.OneToManyMapping.Course;
+import HibernateAdvanceMapping.OneToManyMapping.Instructor;
+import HibernateAdvanceMapping.OneToManyMapping.InstructorDetail;
 import hibernate_tutorial.jdbc.HibernateUtil;
 import org.hibernate.Session;
 
-public class OneToManyApplication {
-
+public class EagerLoadingApp {
     private static String currentDatabase = "hb-03-one-to-many";
     private static Class<Instructor> instructorClass = Instructor.class;
     private static Class<Course> courseClass = Course.class;
     private static Class<InstructorDetail> instructorDetailClass = InstructorDetail.class;
-
 
     private static void show(String s) {
         System.out.println(s);
@@ -22,22 +23,11 @@ public class OneToManyApplication {
     }
 
 
-    private static void addCourseToInstructor(Session session) {
-        Instructor instructor = new Instructor("Viet", "Hoang", "vh@vnu.edu.vn");
-        InstructorDetail instructorDetail = new InstructorDetail("Youtube", "Violin");
-        instructor.setInstructorDetail(instructorDetail);
-        instructorDetail.setInstructor(instructor);
-        session.save(instructor);
-        Course osConcept = new Course("OS Concept");
-        instructor.addCourse(osConcept);
-        session.save(osConcept);
-    }
-
     public static void main(String[] args) {
         Session session = HibernateUtil.getSession(currentDatabase, instructorClass, courseClass, instructorDetailClass);
         session.beginTransaction();
 
-        /*Course course1 = new Course("Spring for Beginner");
+        /* Course course1 = new Course("Spring for Beginner");
         Course course2 = new Course("Data structure and algorithm");
         Course course3 = new Course("Database Management System");
 
@@ -57,14 +47,12 @@ public class OneToManyApplication {
 
         instructorDetail.setInstructor(instructor);
 
-        session.save(instructor);*/
-
+        session.save(instructor); */
 
         Instructor instructor = session.get(instructorClass,3);
+
         listCourses(instructor);
 
-
         session.getTransaction().commit();
-
     }
 }

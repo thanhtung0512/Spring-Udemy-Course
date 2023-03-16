@@ -1,11 +1,18 @@
-package hibernate_tutorial.jdbc;
+package DatabaseWebApp.mainSrcCode.TestingCode;
 
-import hibernate_tutorial.entity.Student;
+import DatabaseWebApp.mainSrcCode.domain.Customer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
+
+    private static String currentDB = "web_customer_tracker";
+    private static String port = "3307";
+    private static String user = "springstudent";
+    private static String pass = "springstudent";
+
+    private static Class<Customer> customerClass = Customer.class;
 
     private static SessionFactory sessionFactory;
 
@@ -40,7 +47,19 @@ public class HibernateUtil {
         }
         return sessionFactory.openSession();
     }
+
+    public static Session getCurrentSession() {
+        return getSession(currentDB,port,user,pass, Customer.class);
+    }
+
+    public static SessionFactory getSessionFactory() {
+        getSession(currentDB,port,user,pass, customerClass);
+        return sessionFactory;
+    }
+
 }
+
+
 
 
 
