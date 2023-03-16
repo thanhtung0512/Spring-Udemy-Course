@@ -24,21 +24,7 @@ public class WebAppWithDB {
     }
 
     public static void main(String[] args) {
-        ApplicationContext context = SpringApplication.run(WebAppWithDB.class,args);
-        SessionFactory sessionFactory = context.getBean("getSessionFactory",SessionFactory.class);
-        Session session = sessionFactory.openSession();
-//        Session session = HibernateUtil.getCurrentSession();
-        try {
-            session.beginTransaction();
-            int id = 1;
-            Customer customer = session.get(Customer.class, id);
-            log(customer);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
+        SpringApplication.run(WebAppWithDB.class,args);
     }
 
     @GetMapping("/secondIndex")
