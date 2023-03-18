@@ -4,10 +4,6 @@ package com.example.springmvcdemo.domain;
 import jakarta.validation.constraints.*;
 
 public class User {
-
-
-
-
     private String username;
     private String email;
     private String password;

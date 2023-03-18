@@ -1,0 +1,2 @@
+1. Add Maven dependency for Spring Boot Starter Web
+2. Create Spring REST Service using @RestController

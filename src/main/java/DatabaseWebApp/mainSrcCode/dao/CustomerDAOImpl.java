@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 
 import javax.transaction.Transactional;
+import java.lang.reflect.Field;
 import java.util.List;
 
 @Repository
@@ -24,5 +25,17 @@ public class CustomerDAOImpl implements CustomerDAO {
         Session session = sessionFactory.openSession();
         List<Customer> customerList = session.createQuery("FROM Customer c", Customer.class).getResultList();
         return customerList;
+    }
+
+    @Override
+    public void delete(int id) {
+
+    }
+
+    @Override
+    @Transactional
+    public void add(Customer customer) {
+        Session session = sessionFactory.openSession();
+        session.save(customer);
     }
 }

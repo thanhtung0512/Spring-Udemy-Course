@@ -17,14 +17,14 @@ public class Customer {
     private String lastName;
 
     @Column(name = "email")
-    private String email;
+    private String Email;
 
     public Customer() {}
 
     public Customer(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.Email = email;
     }
 
     public int getId() {
@@ -52,11 +52,11 @@ public class Customer {
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.Email = email;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class Customer {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
+                ", email='" + Email + '\'' +
                 '}';
     }
 }
